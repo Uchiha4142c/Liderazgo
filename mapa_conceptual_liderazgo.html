@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Conceptual: Liderazgo Docente en Educación Superior</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .pregunta-principal {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+        
+        .mapa-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .concepto-central {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(102,126,234,0.3);
+            position: relative;
+        }
+        
+        .concepto-central::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #764ba2;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .caracteristicas {
+            display: grid;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .caracteristica {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            font-size: 14px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .caracteristica:hover {
+            transform: translateX(5px);
+        }
+        
+        .caracteristica.admin {
+            border-left-color: #e74c3c;
+        }
+        
+        .caracteristica.lider {
+            border-left-color: #27ae60;
+        }
+        
+        .estilos-liderazgo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .estilo {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(116,185,255,0.3);
+        }
+        
+        .estilo h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        
+        .estilo p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .habilidades {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .habilidad {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(162,155,254,0.3);
+        }
+        
+        .conectores {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .conector {
+            background: #34495e;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,184,148,0.3);
+        }
+        
+        .bibliografia {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+            margin-top: 30px;
+        }
+        
+        .bibliografia h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .bibliografia ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .bibliografia li {
+            margin-bottom: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.5);
+        }
+        
+        @media print {
+            body { background: white; }
+            .download-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadPDF()">📥 Descargar PDF</button>
+    
+    <div class="container">
+        <div class="header">
+            <h1>MAPA CONCEPTUAL: LIDERAZGO vs ADMINISTRACIÓN</h1>
+            <p><strong>Universidad del Alba</strong></p>
+            <p><strong>Docente: ALBERTO MILLAN VIVANCO</strong></p>
+        </div>
+        
+        <div class="pregunta-principal">
+            ¿Cuáles son las diferencias fundamentales entre Administrar y Liderar en el contexto educativo?
+        </div>
+        
+        <div class="mapa-principal">
+            <div>
+                <div class="concepto-central" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    ADMINISTRADOR
+                </div>
+                <div class="caracteristicas">
+                    <div class="caracteristica admin"><strong>Definición:</strong> Se enfoca en hacer bien las cosas (eficiencia)</div>
+                    <div class="caracteristica admin"><strong>Enfoque:</strong> Sistemas y estructuras organizacionales</div>
+                    <div class="caracteristica admin"><strong>Control:</strong> Se apoya en el control y supervisión</div>
+                    <div class="caracteristica admin"><strong>Visión:</strong> Perspectiva a corto plazo</div>
+                    <div class="caracteristica admin"><strong>Preguntas:</strong> ¿Cómo? ¿Cuándo?</div>
+                    <div class="caracteristica admin"><strong>Rol:</strong> Mantiene el status quo, es copia</div>
+                    <div class="caracteristica admin"><strong>Personas:</strong> Las ve como recursos</div>
+                    <div class="caracteristica admin"><strong>Método:</strong> Da órdenes y controla</div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="concepto-central" style="background: linear-gradient(135deg, #27ae60, #229954);">
+                    LÍDER
+                </div>
+                <div class="caracteristicas">
+                    <div class="caracteristica lider"><strong>Definición:</strong> Hace lo correcto (efectividad-eficacia)</div>
+                    <div class="caracteristica lider"><strong>Enfoque:</strong> Hacia la gente, da participación</div>
+                    <div class="caracteristica lider"><strong>Inspiración:</strong> Inspira confianza en sus seguidores</div>
+                    <div class="caracteristica lider"><strong>Visión:</strong> Perspectiva global a largo plazo</div>
+                    <div class="caracteristica lider"><strong>Preguntas:</strong> ¿Qué? ¿Por qué?</div>
+                    <div class="caracteristica lider"><strong>Rol:</strong> Desafía el status quo, es original</div>
+                    <div class="caracteristica lider"><strong>Personas:</strong> Las cuida y desarrolla</div>
+                    <div class="caracteristica lider"><strong>Método:</strong> Hace preguntas y desarrolla</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="conectores">
+            <div class="conector">SE DIFERENCIA EN</div>
+        </div>
+        
+        <h2 style="text-align: center; color: #2c3e50; margin: 40px 0 20px 0;">ESTILOS DE LIDERAZGO</h2>
+        <div class="estilos-liderazgo">
+            <div class="estilo" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                <h3>AUTOCRÁTICO</h3>
+                <p>Decisiones unilaterales y verticales. Genera tensión, frustración y agresividad en el grupo. Ausencia de espontaneidad.</p>
+            </div>
+            <div class="estilo" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                <h3>LIBERAL</h3>
+                <p>Da completa libertad al grupo. Baja productividad a pesar de intensa actividad. Poco interés laboral y moral ínfima.</p>
+            </div>
+            <div class="estilo" style="background: linear-gradient(135deg, #27ae60, #229954);">
+                <h3>DEMOCRÁTICO</h3>
+                <p>Permite participación en decisiones. Ambiente de amistad. Comunicación franca y espontánea. Evaluaciones retrospectivas.</p>
+            </div>
+        </div>
+        
+        <div class="conectores">
+            <div class="conector">REQUIERE DESARROLLAR</div>
+        </div>
+        
+        <h2 style="text-align: center; color: #2c3e50; margin: 40px 0 20px 0;">HABILIDADES PROFESIONALES DEL LÍDER</h2>
+        <div class="habilidades">
+            <div class="habilidad">
+                <h3>DIRECTIVAS</h3>
+                <p>Conocimiento de métodos, instrumentos y técnicas para funciones de dirección. Habilidad para tomar decisiones y solucionar problemas.</p>
+            </div>
+            <div class="habilidad">
+                <h3>COMUNICATIVAS</h3>
+                <p>Desarrollo de relaciones interpersonales y trabajo en grupos efectivo.</p>
+            </div>
+            <div class="habilidad">
+                <h3>TÉCNICAS</h3>
+                <p>Aptitud para entender la dinámica del trabajo que dirige y tomar decisiones con conocimiento de causa.</p>
+            </div>
+        </div>
+        
+        <div class="conclusion">
+            <h3 style="margin-top: 0;">CONCLUSIÓN</h3>
+            <p>El liderazgo en educación superior trasciende la simple administración. Mientras el administrador se enfoca en la eficiencia y el control, el líder educativo inspira, desarrolla y transforma. La evolución hacia un liderazgo efectivo requiere desarrollar habilidades directivas, comunicativas y técnicas, aplicando principios universales que generen calidad, productividad y relaciones fructíferas. Los líderes se hacen, no nacen, y su desarrollo es fundamental para el éxito de las instituciones educativas.</p>
+        </div>
+        
+        <div class="bibliografia">
+            <h3>BIBLIOGRAFÍA</h3>
+            <ul>
+                <li>Ruiz Sperare, J. Octavio. <em>Liderazgo</em>. 2017. Ed. Alfil. Cap. 1 al 3, 5, 9, 12, 13. México.</li>
+                <li>Goleman, Daniel. <em>Inteligencia Emocional</em>. 2007. Cap. 1 al 5, 20 al 21. Editorial Reverte. Barcelona-México.</li>
+                <li>Martínez, Víctor. <em>Administración de lo simple a lo complejo</em>. Pluma Digital Ediciones. 2020. 2da. Ed. Buenos Aires.</li>
+                <li>Ivancevich, John. <em>Comportamiento Organizacional</em>. 2006. 7ª Edición. Cap. 15. Mc Graw-Hill España.</li>
+                <li>Gómez Molde, Julio. <em>Liderazgo Educacional</em>. 2017. Cap. 1, 3, 4, 5. Ed. Académica Universitaria. Universidad de las Tunas. Cuba.</li>
+                <li>Agüera Ibáñez, Enrique. <em>Liderazgo y Compromiso Social</em>. 2006. Cap. 1 y Conclusiones. Ed. Miguel Ángel Porrúa. UNAM. México.</li>
+                <li>Martínez Herrera, Horacio. <em>Liderazgo Responsable</em>. 2010. Cap. 1. Ecoe Ediciones. Colombia.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        function downloadPDF() {
+            // Ocultar el botón de descarga temporalmente
+            const btn = document.querySelector('.download-btn');
+            btn.style.display = 'none';
+            
+            // Usar window.print() que permite guardar como PDF
+            window.print();
+            
+            // Mostrar el botón nuevamente después de un momento
+            setTimeout(() => {
+                btn.style.display = 'block';
+            }, 1000);
+        }
+        
+        // Animación de entrada para los elementos
+        window.addEventListener('load', () => {
+            const elementos = document.querySelectorAll('.caracteristica, .estilo, .habilidad');
+            elementos.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.5s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
